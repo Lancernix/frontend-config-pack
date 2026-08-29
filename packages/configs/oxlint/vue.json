@@ -1,0 +1,22 @@
+{
+  // Vue3 + TS 预设：启用 vue 插件，oxlint 内置了 eslint-plugin-vue 的移植规则
+  // 用法：项目根 .oxlintrc.json 里
+  // { "extends": ["./node_modules/@bubu/configs/oxlint/vue.json"] }
+  // 注意：oxlint 的 extends 不支持 npm 包名子路径，必须写 node_modules 里的文件路径
+  "$schema": "../../node_modules/oxlint/configuration_schema.json",
+  "extends": ["./base.json"],
+  "plugins": ["eslint", "typescript", "unicorn", "oxc", "import", "promise", "vue"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn"
+    // 与 react/solid 预设同一哲学：只开 bug 类，不开 style/pedantic（写法偏好）。
+    // 曾给 Vue 单独开过 style: warn，实测与惯用写法冲突严重——12 行典型 composable
+    // 报 5 条警告，累计豁免 8 条规则仍是打地鼠，2026-08-30 撤除（详见根目录
+    // CR-2026-08-30.md 的 R5 与决议记录）。
+    // 撤除 style 不影响 vue 插件的 correctness 规则（no-async-in-computed-properties、
+    // no-shared-component-data、valid-define-props、no-deprecated-* 等 32 条）。
+    // 注意：oxlint 的 vue 插件**尚未移植** require-v-for-key（v-for 缺 key）与
+    // no-use-v-if-with-v-for（v-if/v-for 同级）这两条经典规则，实测均不报错，
+    // 别以为这里有兜底——详见根目录 README 的「已知边界」。
+  }
+}

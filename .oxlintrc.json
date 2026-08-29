@@ -1,0 +1,11 @@
+{
+  // 本仓库根配置只 extends 共享 base（correctness + suspicious）：
+  // 仓库自身没有业务代码，bin.js / templates / examples 不适合按 Vue 组件的 style 口味审。
+  // 三套框架预设由 pnpm lint:vue / lint:react / lint:solid 冒烟验证。
+  // 实际业务项目请 extends 对应框架预设，换框架只改这一行：
+  //   Vue:   "./packages/configs/oxlint/vue.json"
+  //   React: "./packages/configs/oxlint/react.json"
+  //   Solid: "./packages/configs/oxlint/solid.json"
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "extends": ["./packages/configs/oxlint/base.json"]
+}

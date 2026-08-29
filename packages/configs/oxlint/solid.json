@@ -1,0 +1,63 @@
+{
+  // SolidJS 2.0 + TS 预设（面向 Solid 2.0 RC，不再考虑 1.x）
+  // 组成：oxlint 内置 jsx-a11y + 社区插件 oxlint-plugin-solidjs（源自 eslint-plugin-solid，
+  // 其响应性核心规则在 2.0 下依然全部适用：细粒度响应式模型没变）
+  // 用法：项目根 .oxlintrc.json 里
+  // { "extends": ["./node_modules/@bubu/configs/oxlint/solid.json"] }
+  // 注意：oxlint 的 extends 不支持 npm 包名子路径，要写 node_modules 里的文件路径
+  "$schema": "../../node_modules/oxlint/configuration_schema.json",
+  "extends": ["./base.json"],
+  "plugins": ["eslint", "typescript", "unicorn", "oxc", "import", "promise", "jsx-a11y"],
+  // jsPlugins 用裸包名（走 Node 模块解析）：本包把 oxlint-plugin-solidjs 声明为依赖，
+  // 宿主项目装完本包后即可解析，无需宿主自己安装插件。
+  // 不能写相对路径——jsPlugins 是从宿主项目根解析的，不是从本预设所在目录
+  "jsPlugins": ["oxlint-plugin-solidjs"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "pedantic": "off"
+  },
+  "rules": {
+    // —— Solid 响应性核心规则（2.0 依然适用）——
+    // 解构 props 会丢失响应性，必须用 props.x 或 splitProps
+    "oxlint-plugin-solidjs/no-destructure": "error",
+    // 响应式值在非追踪作用域中使用
+    "oxlint-plugin-solidjs/reactivity": "warn",
+    // 列表渲染用 <For> 而不是 .map()
+    "oxlint-plugin-solidjs/prefer-for": "warn",
+    // 条件渲染用 <Show> 而不是三元 / &&
+    "oxlint-plugin-solidjs/prefer-show": "warn",
+    // 禁止 React 风格的写法残留
+    "oxlint-plugin-solidjs/no-react-deps": "warn",
+    "oxlint-plugin-solidjs/no-react-specific-props": "warn",
+    // 注意：jsx-uses-vars 在 oxlint 下要关闭（未使用检测由 oxlint 原生处理）
+    "oxlint-plugin-solidjs/jsx-uses-vars": "off",
+
+    // —— 拦截 Solid 2.0 已删除的 API ——
+    // 2.0 中异步进响应图（createMemo 直接返回 Promise），以下补丁式 API 全部移除：
+    // createResource / batch / startTransition / useTransition / on /
+    // createComputed / produce / createMutable
+    // lint 层先拦一层，类型检查（solid-js 2.0 类型定义里已不存在）会再兜底
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [
+          {
+            "name": "solid-js",
+            "importNames": [
+              "createResource",
+              "batch",
+              "startTransition",
+              "useTransition",
+              "on",
+              "createComputed",
+              "produce",
+              "createMutable"
+            ],
+            "message": "该 API 已在 Solid 2.0 中移除：异步用 createMemo 返回 Promise；批量更新自动完成（flush() 强制同步）；过渡由 isPending/latest 管理。"
+          }
+        ]
+      }
+    ]
+  }
+}

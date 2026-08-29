@@ -1,0 +1,28 @@
+# 依赖
+node_modules
+
+# 构建产物
+dist
+dist-ssr
+coverage
+*.local
+
+# 编辑器（VSCode 个人配置除外，团队配置在 .vscode/ 里提交）
+.idea
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# 日志与缓存
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+.eslintcache
+.prettier-cache
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# AI 工具会话临时文件（反复在根目录出现，勿提交）
+_tmp_*

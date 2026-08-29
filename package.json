@@ -1,0 +1,31 @@
+{
+  "name": "frontend-config-pack",
+  "version": "3.0.0",
+  "private": true,
+  "description": "@bubu/configs 的开发仓库（monorepo）：oxlint + oxfmt + husky + lint-staged + commitlint，Vue3 / React / SolidJS 三套 TS 预设",
+  "type": "module",
+  "scripts": {
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "check": "oxfmt --check && oxlint",
+    "lint:vue": "oxlint -c packages/configs/oxlint/vue.json examples/vue",
+    "lint:react": "oxlint -c packages/configs/oxlint/react.json examples/react",
+    "lint:solid": "oxlint -c packages/configs/oxlint/solid.json examples/solid",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.2.2",
+    "@commitlint/config-conventional": "^21.2.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.4.1",
+    "oxfmt": "^0.65.0",
+    "oxlint": "^1.80.0",
+    "typescript": "^7.0.2"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@11.24.0"
+}

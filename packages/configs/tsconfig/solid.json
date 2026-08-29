@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "SolidJS (Vite)",
+  "extends": "./base.json",
+  // 这里刻意不写 include：TS 的 extends 会把继承来的相对路径按「本文件所在目录」解析，
+  // 写在这里会被解析成 node_modules/@bubu/configs/tsconfig/src/**（TS18003）。
+  // include 请在宿主项目的 tsconfig.json 里自己声明。
+  "compilerOptions": {
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "useDefineForClassFields": true,
+    "types": ["vite/client"]
+  }
+}

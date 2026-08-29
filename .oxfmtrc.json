@@ -1,0 +1,18 @@
+{
+  // oxfmt 配置（Prettier 兼容格式，Rust 实现，比 Prettier 快 30 倍）
+  // 原生支持 .vue SFC / TSX / JSON / YAML / CSS / Markdown 等格式
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 100,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "jsxSingleQuote": false,
+  "trailingComma": "all",
+  "arrowParens": "always",
+  "bracketSpacing": true,
+  "endOfLine": "lf",
+  // package.json 由包管理器维护：oxfmt 会重排它的字段顺序（把 scripts 提到前面），
+  // 与 pnpm/npm 写入的顺序冲突，会让 fmt:check 无故失败并产生无意义 diff，故排除
+  "ignorePatterns": ["**/dist/**", "**/coverage/**", "pnpm-lock.yaml", "**/*.min.*", "package.json"]
+}

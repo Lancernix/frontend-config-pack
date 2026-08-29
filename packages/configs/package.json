@@ -1,0 +1,35 @@
+{
+  "name": "@bubu/configs",
+  "version": "0.1.0",
+  "description": "BuBu 的前端共享配置：oxlint 预设（Vue3/React/SolidJS 2.0）+ tsconfig 基座 + oxfmt/husky/commitlint/CI 模板一键初始化",
+  "license": "MIT",
+  "bin": {
+    "configs-init": "./bin.js"
+  },
+  "files": [
+    "oxlint",
+    "tsconfig",
+    "templates",
+    "bin.js"
+  ],
+  "type": "module",
+  "exports": {
+    "./oxlint/base": "./oxlint/base.json",
+    "./oxlint/vue": "./oxlint/vue.json",
+    "./oxlint/react": "./oxlint/react.json",
+    "./oxlint/solid": "./oxlint/solid.json",
+    "./tsconfig/base": "./tsconfig/base.json",
+    "./tsconfig/vue": "./tsconfig/vue.json",
+    "./tsconfig/react": "./tsconfig/react.json",
+    "./tsconfig/solid": "./tsconfig/solid.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "oxlint-plugin-solidjs": "^0.1.1"
+  },
+  "peerDependencies": {
+    "oxlint": ">=1.80.0"
+  }
+}

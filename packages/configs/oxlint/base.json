@@ -1,0 +1,33 @@
+{
+  // oxlint 共享基础预设：所有框架预设都 extends 这份，保证忽略项 / 环境 / 基础规则一致
+  // 规则体系：categories 按意图分组，correctness（真实 bug）全开 error，
+  // suspicious（疑似 bug）降为 warn，其余类别按需在框架预设里加
+  "$schema": "../../node_modules/oxlint/configuration_schema.json",
+  "ignorePatterns": [
+    "**/dist/**",
+    "**/node_modules/**",
+    "**/coverage/**",
+    "**/*.min.*",
+    "pnpm-lock.yaml"
+  ],
+  // import / promise 是社区配置的常见选择（如 soybeanjs/oxc-config），
+  // 在 correctness+suspicious 级别下零噪音，值得全量开启
+  "plugins": ["eslint", "typescript", "unicorn", "oxc", "import", "promise"],
+  "env": {
+    "builtin": true,
+    "browser": true,
+    "es2024": true
+  },
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn"
+  },
+  "rules": {
+    // 控制台输出交给团队约定，默认不拦（CI 场景可改回 error）
+    "no-console": "off",
+    // TS 项目里枚举合并等场景误报多，默认关
+    "typescript/no-unused-expressions": "off",
+    // 三套预设统一的未使用变量策略：下划线前缀豁免（原来只在 vue 预设里配，上移到这里）
+    "typescript/no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }]
+  }
+}
