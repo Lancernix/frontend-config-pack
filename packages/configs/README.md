@@ -77,7 +77,7 @@ pnpm add -D oxfmt husky lint-staged typescript \
 
 ## 发布
 
-发版由 GitHub Actions 自动完成：push 到 master 触发 `release.yml`，semantic-release 按 Conventional Commits 推导版本（`feat` → minor、`fix` → 补丁、breaking → major），通过 npm OIDC trusted publishing 发布（带 provenance，无需配置 token），并创建对应的 GitHub Release。
+发版由 GitHub Actions 自动完成：push 到 master 触发 `release.yml`，semantic-release 按 Conventional Commits 推导版本（`feat` → minor、`fix` → 补丁、breaking → major），通过 npm OIDC trusted publishing 发布（带 provenance，无需配置 token），并创建对应的 GitHub Release。首次发版固定为 **1.0.0**（semantic-release 不支持 0.x 起步，占位的 0.0.1 会被直接跳过）。
 
 首次发版需完成两步前置（npm 要求包已存在才能配置 trusted publisher）：
 
