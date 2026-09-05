@@ -73,7 +73,7 @@ pnpm add -D oxfmt husky lint-staged typescript \
 - lint-staged 配置对 `package.json` / `pnpm-lock.yaml` 使用否定模式排除，避免「传入文件全部被 oxfmt 忽略」导致 pre-commit 以 exit 2 失败
 - CI 模板的 typecheck 步骤假设 package.json 已配置 `typecheck` 脚本
 - npm 打包会忽略名为 `.gitignore` 的文件，模板以 `gitignore` 名称存放，`configs-init` 拷贝时自动补全点前缀
-- CI 模板默认监听 `main` 分支；宿主主分支为 `master` 时，需把 `.github/workflows/ci.yml` 的 `branches` 改为 `master`
+- CI 模板监听 `master` 分支；宿主主分支为 `main` 时，需把 `.github/workflows/ci.yml` 的 `branches` 改为 `main`
 
 ## 发布
 
