@@ -94,7 +94,7 @@ type 可选：`feat / fix / docs / style / refactor / perf / test / build / ci /
 ## 设计要点与已知边界
 
 - **三套预设分开**：框架插件差异大（vue 插件共 47 条、本预设生效 34 条 / react+perf+a11y / solid 走社区插件），不混在一个配置里，`extends` base 保证基础一致。
-- **类别策略**：三套预设统一 `correctness: error`（真 bug）+ `suspicious: warn`（疑似 bug），style/pedantic 一律不开（写法偏好不强制，格式由 oxfmt 全权管）。Vue 预设曾单独开过 `style: warn`，实测与惯用写法冲突严重（12 行典型 composable 报 5 条警告，累计豁免 8 条规则仍是打地鼠），已于 2026-08-30 撤除对齐 react/solid；过程见 `CR-2026-08-30.md`。想要某条风格规则时在 `rules` 里单条显式添加即可。
+- **类别策略**：三套预设统一 `correctness: error`（真 bug）+ `suspicious: warn`（疑似 bug），style/pedantic 一律不开（写法偏好不强制，格式由 oxfmt 全权管）。Vue 预设曾单独开过 `style: warn`，实测与惯用写法冲突严重（12 行典型 composable 报 5 条警告，累计豁免 8 条规则仍是打地鼠），已于 2026-08-30 撤除对齐 react/solid。想要某条风格规则时在 `rules` 里单条显式添加即可。
 - **规则名坑**：oxlint 的 hooks 规则挂在 `react` 插件下（`react/exhaustive-deps`），不是 `react-hooks/*`；写不存在的规则名会导致**整个配置解析失败**，可用 `oxlint --rules -c packages/configs/oxlint/base.json` 查可用规则。
 - **官方生态现状（2026-08 调研）**：oxc 官方没有"全家桶"预设包，推荐姿势就是默认 correctness + categories 按需开（本包的做法）；从 ESLint 迁移用 `@oxlint/migrate`。两个值得关注的新能力：**type-aware linting**（`oxlint-tsgolint` 包，59/61 条 typescript-eslint 类型规则，`options.typeAware: true` 开启，`--type-check` 还能替代 `tsc --noEmit`，接近稳定但默认不集成）；**`oxlint.config.ts` + `defineConfig`**（官方新的共享方式，可 import 配置对象，绕开 JSON `extends` 不认包名的坑，未来可迁移，JSON 预设目前工作正常暂不动）。
 - **Solid 预设面向 2.0**（不再考虑 1.x）：通过 `jsPlugins`（oxlint 的 JS 插件 API）接入社区移植的 `oxlint-plugin-solidjs`，其响应性核心规则（`no-destructure`、`reactivity`、`prefer-for/show`）在 2.0 细粒度响应式模型下依然全部适用；另用 `no-restricted-imports` 直接拦截 2.0 已删除的 API（`createResource` / `batch` / `startTransition` / `useTransition` / `on` / `createComputed` / `produce` / `createMutable`），类型检查会再兜底一层。注意 `jsx-uses-vars` 在 oxlint 下必须关闭（未使用检测由 oxlint 原生处理）。

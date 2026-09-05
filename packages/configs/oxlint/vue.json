@@ -11,8 +11,7 @@
     "suspicious": "warn"
     // 与 react/solid 预设同一哲学：只开 bug 类，不开 style/pedantic（写法偏好）。
     // 曾给 Vue 单独开过 style: warn，实测与惯用写法冲突严重——12 行典型 composable
-    // 报 5 条警告，累计豁免 8 条规则仍是打地鼠，2026-08-30 撤除（详见根目录
-    // CR-2026-08-30.md 的 R5 与决议记录）。
+    // 报 5 条警告，累计豁免 8 条规则仍是打地鼠，2026-08-30 撤除。
     // 撤除 style 不影响 vue 插件的 correctness 规则（no-async-in-computed-properties、
     // no-shared-component-data、valid-define-props、no-deprecated-* 等 32 条）。
     // 注意：oxlint 的 vue 插件**尚未移植** require-v-for-key（v-for 缺 key）与

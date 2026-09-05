@@ -64,10 +64,24 @@ pnpm exec configs-init init vue
 
 ## 发布
 
-```bash
-cd packages/configs
-pnpm publish --access public
-```
+发版由 GitHub Actions 自动完成：push 到 master 触发 `release.yml`，semantic-release 按
+Conventional Commits 推导版本（`feat` → minor、`fix` → 补丁、breaking → major），
+通过 npm OIDC trusted publishing 发布（带 provenance，无需任何 token），并同步创建 GitHub Release。
+
+首次发版需要两步前置（npm 要求包先存在才能配置 trusted publisher）：
+
+1. 本地手动发布一版占位（浏览器完成 2FA 认证）：
+
+   ```bash
+   cd packages/configs
+   npm version 0.0.1 --no-git-tag-version && npm publish --access public
+   git checkout package.json   # 还原为 0.0.0-development，版本号由 semantic-release 管理
+   ```
+
+2. 在 npmjs.com 的包 Settings → Trusted Publisher 里登记 GitHub Actions：
+   owner=`Lancernix`、repo=`frontend-config-pack`、workflow=`release.yml`、environment=`release`
+
+之后每次 push 到 master 即自动发版。
 
 ## 本仓库开发
 
