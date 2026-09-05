@@ -10,7 +10,7 @@ Rust 实现，比 ESLint + Prettier 快 1~2 个数量级，全项目 lint 毫秒
 frontend-config-pack/
 ├── .oxlintrc.json           # 项目根 oxlint 配置（本仓库只 extends base；业务项目换框架改这一行）
 ├── .oxfmtrc.json            # oxfmt 格式化配置（Prettier 兼容，原生支持 .vue SFC / TSX）
-├── packages/configs/        # 要发布的 npm 包 @lancernix/configs
+├── packages/configs/        # 要发布的 npm 包 @lancernix/fe-base-config
 │   ├── oxlint/              # 三套框架预设，分开维护
 │   │   ├── base.json        # 共享基础：忽略项 + 环境 + correctness/suspicious + import/promise 插件
 │   │   ├── vue.json         # Vue3：vue 插件（oxlint 内置 46 条 vue/* 规则）
@@ -51,7 +51,7 @@ pnpm lint:vue && pnpm lint:react && pnpm lint:solid && pnpm fmt:check
 
 ## 接入到新项目
 
-1. 拷贝 `packages/configs/oxlint/`、`packages/configs/tsconfig/`、`packages/configs/templates/` 内容及 `.husky/`、`.vscode/` 到项目根（或发布后直接装 `@lancernix/configs`，见 `packages/configs/README.md`）。
+1. 拷贝 `packages/configs/oxlint/`、`packages/configs/tsconfig/`、`packages/configs/templates/` 内容及 `.husky/`、`.vscode/` 到项目根（或发布后直接装 `@lancernix/fe-base-config`，见 `packages/configs/README.md`）。
 2. 装依赖：
 
 ```bash

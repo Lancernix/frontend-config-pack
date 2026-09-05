@@ -2,7 +2,7 @@
   "name": "frontend-config-pack",
   "version": "3.0.0",
   "private": true,
-  "description": "@lancernix/configs 的开发仓库（monorepo）：oxlint + oxfmt + husky + lint-staged + commitlint，Vue3 / React / SolidJS 三套 TS 预设",
+  "description": "@lancernix/fe-base-config 的开发仓库（monorepo）：oxlint + oxfmt + husky + lint-staged + commitlint，Vue3 / React / SolidJS 三套 TS 预设",
   "type": "module",
   "scripts": {
     "lint": "oxlint",

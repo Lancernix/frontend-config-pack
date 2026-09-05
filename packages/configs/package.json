@@ -1,7 +1,7 @@
 {
-  "name": "@lancernix/configs",
+  "name": "@lancernix/fe-base-config",
   "version": "0.0.0-development",
-  "description": "BuBu 的前端共享配置：oxlint 预设（Vue3/React/SolidJS 2.0）+ tsconfig 基座 + oxfmt/husky/commitlint/CI 模板一键初始化",
+  "description": "Lancernix 的前端共享配置：oxlint 预设（Vue3/React/SolidJS 2.0）+ tsconfig 基座 + oxfmt/husky/commitlint/CI 模板一键初始化",
   "license": "MIT",
   "bin": {
     "configs-init": "./bin.js"

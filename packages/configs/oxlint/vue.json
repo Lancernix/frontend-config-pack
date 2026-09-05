@@ -1,7 +1,7 @@
 {
   // Vue3 + TS 预设：启用 vue 插件，oxlint 内置了 eslint-plugin-vue 的移植规则
   // 用法：项目根 .oxlintrc.json 里
-  // { "extends": ["./node_modules/@lancernix/configs/oxlint/vue.json"] }
+  // { "extends": ["./node_modules/@lancernix/fe-base-config/oxlint/vue.json"] }
   // 注意：oxlint 的 extends 不支持 npm 包名子路径，必须写 node_modules 里的文件路径
   "$schema": "../../node_modules/oxlint/configuration_schema.json",
   "extends": ["./base.json"],

@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * @lancernix/configs 初始化命令
+ * @lancernix/fe-base-config 初始化命令
  *
  * 用法（在项目根目录执行）：
- *   pnpm dlx @lancernix/configs init vue           # 选框架：vue | react | solid
- *   pnpm dlx @lancernix/configs init react --force # 覆盖已存在的文件
+ *   pnpm dlx @lancernix/fe-base-config init vue           # 选框架：vue | react | solid
+ *   pnpm dlx @lancernix/fe-base-config init react --force # 覆盖已存在的文件
  *
  * 生成内容：
  *   - .oxlintrc.json        （按所选框架 extends 对应预设）
@@ -25,7 +25,7 @@ const command = args[0];
 const force = args.includes('--force');
 const framework = args.find((a) => FRAMEWORKS.includes(a));
 
-const PKG_NAME = '@lancernix/configs';
+const PKG_NAME = '@lancernix/fe-base-config';
 
 function usage() {
   console.log(`${PKG_NAME}

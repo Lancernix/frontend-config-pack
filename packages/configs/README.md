@@ -1,6 +1,6 @@
-# @lancernix/configs
+# @lancernix/fe-base-config
 
-BuBu 的前端共享配置包，一个包管全所有工程化配置：
+Lancernix 的前端共享配置包，一个包管全所有工程化配置：
 
 - **oxlint 预设**：Vue3 / React / SolidJS 2.0 三套 TS 预设（含响应性规则与 2.0 已删除 API 拦截）
 - **tsconfig 基座**：base + vue / react / solid 三个框架变体
@@ -9,8 +9,8 @@ BuBu 的前端共享配置包，一个包管全所有工程化配置：
 ## 宿主项目使用
 
 ```bash
-# 装包（发布后用 @lancernix/configs；本地调试用 @lancernix/configs@file:<本包绝对路径>）
-pnpm add -D oxlint @lancernix/configs
+# 装包（发布后用 @lancernix/fe-base-config；本地调试用 @lancernix/fe-base-config@file:<本包绝对路径>）
+pnpm add -D oxlint @lancernix/fe-base-config
 
 # 一条命令生成全套项目根配置（vue | react | solid 二选一）
 pnpm exec configs-init init vue
@@ -23,7 +23,7 @@ pnpm exec configs-init init vue
 1. **tsconfig.json**（预设里刻意不带 `include`，必须自己声明）：
 
    ```json
-   { "extends": "./node_modules/@lancernix/configs/tsconfig/vue.json", "include": ["src"] }
+   { "extends": "./node_modules/@lancernix/fe-base-config/tsconfig/vue.json", "include": ["src"] }
    ```
 
 2. **package.json** 加依赖和脚本：
@@ -59,7 +59,7 @@ pnpm exec configs-init init vue
 - npm 打包会剥掉 `.gitignore` 文件名，模板存为 `gitignore`，拷贝时补点
 - CI 模板里的 typecheck 步骤假设 package.json 有 `typecheck` 脚本
 - 三个 tsconfig 变体都写了 `types: ["vite/client"]`，项目需装有 vite；非 Vite 项目（webpack/rspack 等）在自己的 tsconfig.json 里覆盖 `types` 即可
-- tsconfig 预设**不带 `include`**：TS 的 `extends` 会把继承来的相对路径按「预设文件所在目录」解析，写在预设里会被解析到 `node_modules/@lancernix/configs/tsconfig/src/**`（TS18003），所以 include 由宿主项目自己声明
+- tsconfig 预设**不带 `include`**：TS 的 `extends` 会把继承来的相对路径按「预设文件所在目录」解析，写在预设里会被解析到 `node_modules/@lancernix/fe-base-config/tsconfig/src/**`（TS18003），所以 include 由宿主项目自己声明
 - `.oxfmtrc.json` 模板把 `package.json` 放进了 `ignorePatterns`：oxfmt 会重排 package.json 的字段顺序（如把 `scripts` 提到前面），与 pnpm/npm 写入的顺序冲突，会让 `fmt:check` 无故失败并产生无意义 diff
 
 ## 发布
