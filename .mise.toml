@@ -1,0 +1,5 @@
+# 本地工具链与 CI 对齐：Node 24 LTS + pnpm 11
+# 版本只钉大版本， mise 会自动取该大版本下的最新版
+[tools]
+node = "24"
+pnpm = "11"

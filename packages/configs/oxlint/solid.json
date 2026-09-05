@@ -3,7 +3,7 @@
   // 组成：oxlint 内置 jsx-a11y + 社区插件 oxlint-plugin-solidjs（源自 eslint-plugin-solid，
   // 其响应性核心规则在 2.0 下依然全部适用：细粒度响应式模型没变）
   // 用法：项目根 .oxlintrc.json 里
-  // { "extends": ["./node_modules/@bubu/configs/oxlint/solid.json"] }
+  // { "extends": ["./node_modules/@lancernix/configs/oxlint/solid.json"] }
   // 注意：oxlint 的 extends 不支持 npm 包名子路径，要写 node_modules 里的文件路径
   "$schema": "../../node_modules/oxlint/configuration_schema.json",
   "extends": ["./base.json"],

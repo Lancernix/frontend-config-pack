@@ -1,6 +1,6 @@
 {
-  "name": "@bubu/configs",
-  "version": "0.1.0",
+  "name": "@lancernix/configs",
+  "version": "0.0.0-development",
   "description": "BuBu 的前端共享配置：oxlint 预设（Vue3/React/SolidJS 2.0）+ tsconfig 基座 + oxfmt/husky/commitlint/CI 模板一键初始化",
   "license": "MIT",
   "bin": {
@@ -23,13 +23,22 @@
     "./tsconfig/react": "./tsconfig/react.json",
     "./tsconfig/solid": "./tsconfig/solid.json"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lancernix/frontend-config-pack.git",
+    "directory": "packages/configs"
+  },
   "publishConfig": {
     "access": "public"
+  },
+  "engines": {
+    "node": ">=24.0.0",
+    "pnpm": ">=11.0.0"
   },
   "dependencies": {
     "oxlint-plugin-solidjs": "^0.1.1"
   },
   "peerDependencies": {
-    "oxlint": ">=1.80.0"
+    "oxlint": ">=1.81.0"
   }
 }

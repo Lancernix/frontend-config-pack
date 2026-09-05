@@ -2,7 +2,7 @@
   "name": "frontend-config-pack",
   "version": "3.0.0",
   "private": true,
-  "description": "@bubu/configs 的开发仓库（monorepo）：oxlint + oxfmt + husky + lint-staged + commitlint，Vue3 / React / SolidJS 三套 TS 预设",
+  "description": "@lancernix/configs 的开发仓库（monorepo）：oxlint + oxfmt + husky + lint-staged + commitlint，Vue3 / React / SolidJS 三套 TS 预设",
   "type": "module",
   "scripts": {
     "lint": "oxlint",
@@ -20,12 +20,13 @@
     "@commitlint/config-conventional": "^21.2.2",
     "husky": "^9.1.7",
     "lint-staged": "^17.4.1",
-    "oxfmt": "^0.65.0",
-    "oxlint": "^1.80.0",
+    "oxfmt": "^0.66.0",
+    "oxlint": "^1.81.0",
     "typescript": "^7.0.2"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=24",
+    "pnpm": ">=11"
   },
   "packageManager": "pnpm@11.24.0"
 }
