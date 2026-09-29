@@ -1,0 +1,15 @@
+{
+  // Node / NestJS 服务端预设：extends base，env 去掉 browser 换成 node。
+  // 适用：NestJS / 任意 Node 服务。装饰器语法开关由 tsconfig/node.json 负责，这里只管环境与规则。
+  // [实测 oxlint 1.86] no-undef 未在 correctness 类别下对 JS 生效（未定义全局也不报），
+  // 故 env 声明暂不影响 lint 结果；browser:false + node:true 作为语义声明保留，
+  // 待 oxlint 的 no-undef 行为变化后复测（探针脚本见 git 历史）。
+  "$schema": "../../node_modules/oxlint/configuration_schema.json",
+  "extends": ["./base.json"],
+  "env": {
+    "builtin": true,
+    "es2024": true,
+    "node": true,
+    "browser": false
+  }
+}

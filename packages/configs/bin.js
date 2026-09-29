@@ -3,7 +3,7 @@
  * @lancernix/fe-base-config 初始化命令
  *
  * 用法（在项目根目录执行）：
- *   pnpm dlx @lancernix/fe-base-config init vue           # 选框架：vue | react | solid
+ *   pnpm dlx @lancernix/fe-base-config init vue           # 选框架：vue | react | solid | node
  *   pnpm dlx @lancernix/fe-base-config init react --force # 覆盖已存在的文件
  *
  * 生成内容：
@@ -19,7 +19,7 @@ import { fileURLToPath } from 'node:url';
 const pkgDir = dirname(fileURLToPath(import.meta.url));
 const templatesDir = join(pkgDir, 'templates');
 
-const FRAMEWORKS = ['vue', 'react', 'solid'];
+const FRAMEWORKS = ['vue', 'react', 'solid', 'node'];
 const args = process.argv.slice(2);
 const command = args[0];
 const force = args.includes('--force');
@@ -31,8 +31,8 @@ function usage() {
   console.log(`${PKG_NAME}
 
 用法:
-  configs-init init <vue|react|solid>          在当前目录生成全套配置
-  configs-init init <vue|react|solid> --force  覆盖已存在的文件
+  configs-init init <vue|react|solid|node>          在当前目录生成全套配置
+  configs-init init <vue|react|solid|node> --force  覆盖已存在的文件
 
 生成后 package.json 建议脚本:
   "lint": "oxlint",

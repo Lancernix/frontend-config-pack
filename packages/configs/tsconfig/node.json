@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Node (NestJS)",
+  "extends": "./base.json",
+  // 与 base 的差异均为服务端必需：
+  // - lib 去 DOM；module(nodenext) 是 TS6 的正确 CJS 形态——TS6 已移除 node10 解析，
+  //   宿主 package.json 不写 "type": "module" 即为 CommonJS 语义（NestJS 标准）
+  // - 装饰器元数据：NestJS DI 依赖 emitDecoratorMetadata（TS 7 未就绪前必须显式开）
+  // - verbatimModuleSyntax 关闭：CJS + 装饰器元数据场景与 base 的 bundler 假设冲突
+  // - noEmit 关闭：nest build 需要 emit，outDir/rootDir 由宿主声明
+  // - types 含 node：宿主需安装 @types/node
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "verbatimModuleSyntax": false,
+    "noEmit": false,
+    "types": ["node"]
+  }
+}
