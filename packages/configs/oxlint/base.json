@@ -23,11 +23,32 @@
     "suspicious": "warn"
   },
   "rules": {
+    // no-undef 显式关闭：oxlint 1.86 实测未激活（未定义全局不报），且 Mantine 官方配置
+    // 同样显式关闭——env 的意义在于语义声明而非此规则 [R62 借鉴 Mantine]
+    "no-undef": "off",
     // 控制台输出交给团队约定，默认不拦（CI 场景可改回 error）
     "no-console": "off",
     // TS 项目里枚举合并等场景误报多，默认关
     "typescript/no-unused-expressions": "off",
-    // 三套预设统一的未使用变量策略：下划线前缀豁免（原来只在 vue 预设里配，上移到这里）
-    "typescript/no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }]
+    // 未使用变量策略升级 [R62 借鉴 Mantine]：ignoreRestSiblings（解构省略 rest 兄弟
+    // 属性不报）+ caughtErrors 不报（catch (e) 未用是常见模式）
+    "typescript/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrors": "none",
+        "ignoreRestSiblings": true
+      }
+    ],
+    // ── 防御性规则（correctness 邻域，借鉴 Mantine 官方配置 [R62]，oxlint 1.7x+ 全部可用）──
+    "array-callback-return": "error",
+    "no-self-compare": "error",
+    "no-sequences": "error",
+    "no-eval": "error",
+    "no-throw-literal": "error",
+    "prefer-promise-reject-errors": "error",
+    "eqeqeq": ["error", "smart"],
+    "radix": "error"
   }
 }

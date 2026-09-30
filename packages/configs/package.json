@@ -10,7 +10,9 @@
     "oxlint",
     "tsconfig",
     "templates",
-    "bin.js"
+    "bin.js",
+    "index.js",
+    "types.d.ts"
   ],
   "type": "module",
   "exports": {
@@ -21,7 +23,13 @@
     "./tsconfig/base": "./tsconfig/base.json",
     "./tsconfig/vue": "./tsconfig/vue.json",
     "./tsconfig/react": "./tsconfig/react.json",
-    "./tsconfig/solid": "./tsconfig/solid.json"
+    "./tsconfig/solid": "./tsconfig/solid.json",
+    "./oxlint/node": "./oxlint/node.json",
+    "./tsconfig/node": "./tsconfig/node.json",
+    ".": {
+      "types": "./types.d.ts",
+      "default": "./index.js"
+    }
   },
   "repository": {
     "type": "git",
@@ -39,6 +47,6 @@
     "oxlint-plugin-solidjs": "^0.1.1"
   },
   "peerDependencies": {
-    "oxlint": ">=1.81.0"
+    "oxlint": ">=1.86.0"
   }
 }
